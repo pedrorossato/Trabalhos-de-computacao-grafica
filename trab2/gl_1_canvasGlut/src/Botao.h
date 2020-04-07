@@ -6,25 +6,34 @@
 class Botao{
   float altura, largura, x, y;
   char label[100];
+  char figura;
 
 public:
-  Botao(float _x, float _y, float _larg, float _alt, char *_label)
+  Botao(float _x, float _y, float _larg, float _alt, char *_label, char _figura)
   {
      altura  = _alt;
      largura = _larg;
      x = _x;
      y = _y;
      strcpy(label, _label);
+     figura = _figura;
   }
 
-  void Render()
+  void Render(int rb, int gb, int bb,int rt, int gt,int bt)
   {
-      color(0, 1, 0);
+      color((float)rb/255,(float)gb/255,(float)bb/255);
       rectFill(x, y, x + largura, y + altura);
-      color(0, 0, 0);
+      color((float)rt/255,(float)gt/255,(float)bt/255);
       text(x+5, y+altura/2, label); //escreve o label do botao mais ou menos ao centro.
   }
-
+  char getFigura()
+  {
+      return figura;
+  }
+  char *getLabel()
+  {
+      return label;
+  }
   //recebe as coordenadas do mouse para tratar clique ou detectar quando o mouse esta em cima do botao
   bool Colidiu(int mx, int my)
   {

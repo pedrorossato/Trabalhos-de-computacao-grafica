@@ -2,11 +2,21 @@
 #define TRIANGULO_H
 
 
-class triangulo
+class Triangulo
 {
+    int x,y,raio;
     public:
-        triangulo();
-        virtual ~triangulo();
+        Triangulo(int _x, int _y, int _raio)
+        {
+            x = _x;
+            y = _y;
+            raio = _raio;
+        }
+        void Render(int r, int g,int b)
+        {
+            color((float)r/255,(float)g/255,(float)b/255);
+            circleFill(x,y,raio,3);
+        }
 
     protected:
 

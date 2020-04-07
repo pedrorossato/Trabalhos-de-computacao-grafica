@@ -94,3 +94,69 @@
 1426372440 c:\users\pedro rossato\desktop\trab1cg\gl_1_canvasglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
+1584043099 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1584042973 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1426372440 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426372440 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1586178460 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\quadrilatero.cpp
+	"quadrilatero.h"
+
+1586178459 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\quadrilatero.h
+
+1586178494 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\triangulo.cpp
+	"triangulo.h"
+
+1586178494 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\triangulo.h
+
+1586274953 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<vector>
+	"main.h"
+	"Botao.h"
+	"Circulo.h"
+
+1586268101 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\botao.h
+	"gl_canvas2d.h"
+
+1586274887 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.h
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	"gl_canvas2d.h"
+	"Quadrilatero.h"
+	"Triangulo.h"
+	"Circulo.h"
+
+1586268770 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.cpp
+	"Circulo.h"
+
+1586269976 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.h
+	"gl_canvas2d.h"
+

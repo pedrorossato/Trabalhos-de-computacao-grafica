@@ -11,22 +11,38 @@
 
 #include <GL/glut.h>
 #include <GL/freeglut_ext.h> //callback da wheel do mouse.
-
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "gl_canvas2d.h"
+#include <vector>
+#include "main.h"
 #include "Botao.h"
 
+using namespace std;
 
-Botao   *bt = NULL; //se a aplicacao tiver varios botoes, sugiro implementar um manager de botoes.
 
 //variavel global para selecao do que sera exibido na canvas.
 int opcao  = 50;
 int screenWidth = 1080, screenHeight = 720; //largura e altura inicial da tela . Alteram com o redimensionamento de tela.
 int mouseX, mouseY; //variaveis globais do mouse para poder exibir dentro da render().
+char figuraSelecionada;
+vector<Botao>botoes;
+vector<Circulo>circulos;
+vector<Triangulo>triangulos;
 
+void renderizaBotoes()
+{
+    for(auto b = botoes.begin();b!=botoes.end();++b)
+    {
+        switch(b->getFigura())
+        {
+            case 'c':
+                b->Render(0,0,255,255,255,255);
+                break;
+            case 't':
+                b->Render(255,0,0,255,255,255);
+                break;
+        }
+
+    }
+}
 void DrawMouseScreenCoords()
 {
     char str[100];
@@ -41,10 +57,18 @@ void DrawMouseScreenCoords()
 //Deve-se manter essa função com poucas linhas de codigo.
 void render()
 {
-   DrawMouseScreenCoords();
+   DrawMouseScreenCoords(mouseX,mouseY,screenWidth,screenHeight);
+   desenhaGUI(screenWidth,screenHeight);
+   renderizaBotoes();
 
-   bt->Render();
-
+   for(auto c = circulos.begin();c!=circulos.end();++c)
+   {
+       c->Render(0,0,0);
+   }
+   for(auto t = triangulos.begin();t!=triangulos.end();++t)
+   {
+       t->Render(0,0,0);
+   }
 }
 
 //funcao chamada toda vez que uma tecla for pressionada.
@@ -81,18 +105,38 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
    if( state == 0 ) //clicou
    {
-       if( bt->Colidiu(x, y) )
+       for(auto i = botoes.begin();i!=botoes.end();++i)
        {
-           printf("\nClicou no botao\n");
+           if( i->Colidiu(x, y) )
+           {
+               figuraSelecionada = i->getFigura();
+               printf("\nClicou no %c\n", i->getFigura());
+           }
+
+       }
+       if(mouseX<880)
+       {
+           switch(figuraSelecionada)
+           {
+                case 'c':
+                    circulos.push_back(Circulo(mouseX,mouseY,30));
+                    break;
+                case 't':
+                    triangulos.push_back(Triangulo(mouseX,mouseY,30));
+                    break;
+           }
        }
    }
+}
+void iniciaBotoes()
+{
+    botoes.push_back(Botao(960,600,100,40,"Circulo",'c'));
+    botoes.push_back(Botao(960,550,100,40,"Triangulo",'t'));
 }
 
 int main(void)
 {
    initCanvas(&screenWidth, &screenHeight, "Titulo da Janela: Canvas 2D - Pressione 1, 2, 3");
-
-   bt = new Botao(200, 400, 140, 50, "Sou um botao");
-
+   iniciaBotoes();
    runCanvas();
 }

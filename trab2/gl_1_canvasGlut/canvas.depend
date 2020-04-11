@@ -131,32 +131,43 @@
 1586178494 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\triangulo.cpp
 	"triangulo.h"
 
-1586178494 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\triangulo.h
+1586547281 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\triangulo.h
+	"Figura.h"
 
-1586274953 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.cpp
+1586614998 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
-	<vector>
+	<list>
+	<algorithm>
+	<stdlib.h>
+	<iostream>
 	"main.h"
 	"Botao.h"
-	"Circulo.h"
+	<type_traits>
 
-1586268101 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\botao.h
+1586276808 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\botao.h
 	"gl_canvas2d.h"
 
-1586274887 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.h
+1586534660 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.h
 	<math.h>
 	<stdio.h>
 	<stdlib.h>
 	<iostream>
 	"gl_canvas2d.h"
-	"Quadrilatero.h"
+	"Quadrado.h"
 	"Triangulo.h"
 	"Circulo.h"
+	"Figura.h"
 
 1586268770 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.cpp
 	"Circulo.h"
 
-1586269976 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.h
+1586544696 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.h
+	"Figura.h"
+
+1586547069 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\quadrado.h
+	"Figura.h"
+
+1586546801 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\figura.h
 	"gl_canvas2d.h"
 

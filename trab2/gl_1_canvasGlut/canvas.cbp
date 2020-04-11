@@ -48,6 +48,8 @@
 		<Unit filename="include/GL/glut.h" />
 		<Unit filename="src/Botao.h" />
 		<Unit filename="src/Circulo.h" />
+		<Unit filename="src/Figura.h" />
+		<Unit filename="src/Quadrado.h" />
 		<Unit filename="src/Triangulo.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
 		<Unit filename="src/gl_canvas2d.h" />

@@ -94,7 +94,7 @@
 1426372440 c:\users\pedro rossato\desktop\trab1cg\gl_1_canvasglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1584043099 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\gl_canvas2d.cpp
+1586639919 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\gl_canvas2d.cpp
 	"gl_canvas2d.h"
 	<GL/glut.h>
 
@@ -134,30 +134,27 @@
 1586547281 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\triangulo.h
 	"Figura.h"
 
-1586614998 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.cpp
-	<GL/glut.h>
-	<GL/freeglut_ext.h>
-	<list>
-	<algorithm>
-	<stdlib.h>
-	<iostream>
+1586641055 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.cpp
 	"main.h"
-	"Botao.h"
-	<type_traits>
 
 1586276808 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\botao.h
 	"gl_canvas2d.h"
 
-1586534660 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.h
+1586640756 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.h
 	<math.h>
 	<stdio.h>
 	<stdlib.h>
 	<iostream>
+	<list>
+	<algorithm>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
 	"gl_canvas2d.h"
 	"Quadrado.h"
 	"Triangulo.h"
 	"Circulo.h"
 	"Figura.h"
+	"Botao.h"
 
 1586268770 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.cpp
 	"Circulo.h"
@@ -168,6 +165,6 @@
 1586547069 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\quadrado.h
 	"Figura.h"
 
-1586546801 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\figura.h
+1586641476 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\figura.h
 	"gl_canvas2d.h"
 

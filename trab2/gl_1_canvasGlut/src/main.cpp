@@ -9,66 +9,8 @@
 //
 // *********************************************************************/
 
-#include <GL/glut.h>
-#include <GL/freeglut_ext.h> //callback da wheel do mouse.
-#include <list>
-#include <algorithm>
-#include <stdlib.h>
-#include <iostream>
 #include "main.h"
-#include "Botao.h"
-#include <type_traits>
-using namespace std;
 
-
-//variavel global para selecao do que sera exibido na canvas.
-int tamanho = 30;
-int screenWidth = 1080, screenHeight = 720; //largura e altura inicial da tela . Alteram com o redimensionamento de tela.
-int mouseX, mouseY; //variaveis globais do mouse para poder exibir dentro da render().
-char proximaFigura;
-char str[100];
-bool preenchida;
-Figura* figuraSelecionada;
-list<Botao>botoesFiguras;
-list<Botao>botoesTamanho;
-list<Figura*>figuras;
-
-
-void iniciaBotoes()
-{
-    botoesFiguras.push_back(Botao(940,600,100,40,"Circulo",'c'));
-    botoesFiguras.push_back(Botao(940,550,100,40,"Triangulo",'t'));
-    botoesFiguras.push_back(Botao(940,500,100,40,"Quadrado",'q'));
-    botoesTamanho.push_back(Botao(930,20,50,40,"+",'+'));
-    botoesTamanho.push_back(Botao(1000,20,50,40,"-",'-'));
-
-}
-void renderizaBotoes()
-{
-    for(list<Botao>::iterator bf = botoesFiguras.begin();bf!=botoesFiguras.end();++bf)
-    {
-        switch(bf->getFigura())
-        {
-            case 'c':
-                bf->Render(0,0,255,255,255,255);
-                break;
-            case 't':
-                bf->Render(255,0,0,255,255,255);
-                break;
-            case 'q':
-                bf->Render(0,255,0,0,0,0);
-        }
-    }
-    for(list<Botao>::iterator bt = botoesTamanho.begin();bt!=botoesTamanho.end();++bt)
-    {
-        bt->Render(255,255,0,0,0,0);
-    }
-}
-void renderizaLabels(){
-    color(1,1,1);
-    sprintf(str, "TAMANHO: (%d)",tamanho);
-    text(920,70, str);
-}
 //funcao chamada continuamente. Deve-se controlar o que desenhar por meio de variaveis globais
 //Todos os comandos para desenho na canvas devem ser chamados dentro da render().
 //Deve-se manter essa função com poucas linhas de codigo.
@@ -118,6 +60,21 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                }
            }
        }
+       for(list<Botao>::iterator i = botoesRotacao.begin();i!=botoesRotacao.end();++i)
+       {
+           if(i->Colidiu(x,y))
+           {
+               switch(i->getFigura())
+               {
+                    case '>':
+                        figuraSelecionada->rotaciona();
+                        break;
+                    case '<':
+                        figuraSelecionada->rotaciona();
+                        break;
+               }
+           }
+       }
        if(mouseX<880)
        {
 
@@ -126,7 +83,6 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                 if((*i)->Colidiu(x,y))
                 {
                     figuraSelecionada = (*i);
-                    cout << endl << "tamanho: "<< figuraSelecionada->getTamanho() << endl;
                 }
             }
 

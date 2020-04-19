@@ -19,10 +19,13 @@ public:
      figura = _figura;
   }
 
-  void Render(int rb, int gb, int bb,int rt, int gt,int bt)
+  void Render(int rb, int gb, int bb,int rt, int gt,int bt,int preenchida)
   {
       color((float)rb/255,(float)gb/255,(float)bb/255);
-      rectFill(x, y, x + largura, y + altura);
+      if(preenchida==1)
+        rectFill(x, y, x + largura, y + altura);
+      else
+        rect(x,y,x+largura,y+altura);
       color((float)rt/255,(float)gt/255,(float)bt/255);
       text(x+5, y+altura/2, label); //escreve o label do botao mais ou menos ao centro.
   }

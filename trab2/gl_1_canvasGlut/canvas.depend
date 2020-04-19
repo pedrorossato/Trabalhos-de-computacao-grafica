@@ -131,16 +131,17 @@
 1586178494 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\triangulo.cpp
 	"triangulo.h"
 
-1586547281 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\triangulo.h
+1587256501 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\triangulo.h
 	"Figura.h"
+	<algorithm>
 
-1586641055 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.cpp
+1587263583 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.cpp
 	"main.h"
 
-1586276808 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\botao.h
+1586798653 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\botao.h
 	"gl_canvas2d.h"
 
-1586640756 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.h
+1587262066 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.h
 	<math.h>
 	<stdio.h>
 	<stdlib.h>
@@ -150,21 +151,29 @@
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	"gl_canvas2d.h"
-	"Quadrado.h"
-	"Triangulo.h"
-	"Circulo.h"
+	"Poligono.h"
 	"Figura.h"
 	"Botao.h"
 
 1586268770 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.cpp
 	"Circulo.h"
 
-1586544696 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.h
+1587256474 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.h
 	"Figura.h"
 
-1586547069 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\quadrado.h
+1587257616 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\quadrado.h
 	"Figura.h"
+	<math.h>
 
-1586641476 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\figura.h
+1587258596 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\figura.h
 	"gl_canvas2d.h"
+	<math.h>
+
+1587257426 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\poligono.h
+	"Figura.h"
+	<math.h>
+
+1587257025 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\pentagono.h
+	"Figura.h"
+	<math.h>
 

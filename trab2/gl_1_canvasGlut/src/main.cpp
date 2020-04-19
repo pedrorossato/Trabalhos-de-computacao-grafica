@@ -10,7 +10,7 @@
 // *********************************************************************/
 
 #include "main.h"
-
+#define pi 3.14159265
 //funcao chamada continuamente. Deve-se controlar o que desenhar por meio de variaveis globais
 //Todos os comandos para desenho na canvas devem ser chamados dentro da render().
 //Deve-se manter essa função com poucas linhas de codigo.
@@ -19,10 +19,12 @@ void render()
    desenhaGUI(screenWidth,screenHeight);
    renderizaBotoes();
    renderizaLabels();
+   renderizaColorPicker();
    for(list<Figura*>::iterator f = figuras.begin();f!=figuras.end();++f)
    {
        (*f)->render();
    }
+   printf("\nsize: %d\n",figuras.size());
 }
 
 //funcao para tratamento de mouse: cliques, movimentos e arrastos
@@ -35,49 +37,109 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
    if( button==0 && state == 0 ) //clicou com botao esquerdo
    {
-       for(list<Botao>::iterator i = botoesFiguras.begin();i!=botoesFiguras.end();++i)
-       {
-           if( i->Colidiu(x, y) )
-           {
-               proximaFigura = i->getFigura();
-           }
-
-       }
-       for(list<Botao>::iterator i = botoesTamanho.begin();i!=botoesTamanho.end();++i)
-       {
-           if(i->Colidiu(x,y))
-           {
-               switch (i->getFigura())
-               {
-                    case '+':
-                        figuraSelecionada->setTamanho(figuraSelecionada->getTamanho()+5);
-                        tamanho+=5;
-                        break;
-                    case '-':
-                        figuraSelecionada->setTamanho(figuraSelecionada->getTamanho()-5);
-                        tamanho-=5;
-                        break;
-               }
-           }
-       }
-       for(list<Botao>::iterator i = botoesRotacao.begin();i!=botoesRotacao.end();++i)
+       for(list<Botao>::iterator i = botoes.begin();i!=botoes.end();++i)
        {
            if(i->Colidiu(x,y))
            {
                switch(i->getFigura())
                {
+                   case 'a':
+                        for(list<Figura*>::iterator i = figuras.begin();i!=figuras.end();++i)
+                        {
+                            figuras.erase(i);
+                            carregado = false;
+                        }
+                        break;
+                   case 'f':
+                        switch(preenchidag)
+                        {
+                            case 0 :
+                                preenchidag=1;
+                                if(figuraSelecionada!=nullptr)
+                                    figuraSelecionada->setPreenchida(preenchidag);
+                                break;
+                            case 1:
+                                preenchidag=0;
+                                if(figuraSelecionada!=nullptr)
+                                    figuraSelecionada->setPreenchida(preenchidag);
+                                break;
+                        }
+                   case 'q':
+                        proximaFigura = i->getFigura();
+                        break;
+                   case 'c':
+                        proximaFigura = i->getFigura();
+                        break;
+                   case 't':
+                        proximaFigura = i->getFigura();
+                        break;
+                   case 'p':
+                        proximaFigura = i->getFigura();
+                        break;
+                   case 'h':
+                        proximaFigura = i->getFigura();
+                        break;
+                   case 'o':
+                        proximaFigura = i->getFigura();
+                        break;
+                   case '+':
+                        if(figuraSelecionada != nullptr)
+                        {
+                            figuraSelecionada->setTamanho(figuraSelecionada->getTamanho()+5);
+                            tamanho = figuraSelecionada->getTamanho();
+                        }
+                        else
+                            tamanho+=5;
+                        break;
+                    case '-':
+                        if(figuraSelecionada != nullptr && figuraSelecionada->getTamanho()>5)
+                        {
+                            figuraSelecionada->setTamanho(figuraSelecionada->getTamanho()-5);
+                            tamanho = figuraSelecionada->getTamanho();
+                        }
+                        if(tamanho>5 && figuraSelecionada == nullptr)
+                            tamanho-=5;
+                        break;
+                    case 'm':
+                        if(figuraSelecionada != nullptr)
+                        {
+                            figuras.push_back(new Poligono(figuraSelecionada->getX(),figuraSelecionada->getY(),figuraSelecionada->getTamanho(),
+                                                           figuraSelecionada->getR(),figuraSelecionada->getG(),figuraSelecionada->getB(),
+                                                           figuraSelecionada->getPreenchida(),figuraSelecionada->getLados(),figuraSelecionada->getAngulo()));
+                            for(auto i = figuras.begin();i != figuras.end();++i)
+                            {
+                                if(*i == figuraSelecionada)
+                                    figuras.erase(i);
+                            }
+
+                        }
+                        break;
                     case '>':
-                        figuraSelecionada->rotaciona();
+                        if(figuraSelecionada != nullptr)
+                        {
+                            figuraSelecionada->rotaciona(-(pi/18));
+                        }
                         break;
                     case '<':
-                        figuraSelecionada->rotaciona();
+                        if(figuraSelecionada != nullptr)
+                        {
+                            figuraSelecionada->rotaciona(pi/18);
+                        }
+                        break;
+                    case 's':
+                        salvar();
+                        break;
+                    case 'l':
+                        carregar();
                         break;
                }
            }
        }
+
+
        if(mouseX<880)
        {
-
+            figuraSelecionada = nullptr;
             for(list<Figura*>::iterator i = figuras.begin();i!=figuras.end();++i)
             {
                 if((*i)->Colidiu(x,y))
@@ -85,19 +147,30 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                     figuraSelecionada = (*i);
                 }
             }
-
             switch(proximaFigura)
             {
                 case 'c':
-                    figuras.push_back(new Circulo(mouseX,mouseY,tamanho,0,0,0,true));
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,360,0));
                     proximaFigura = NULL;
                     break;
                 case 't':
-                    figuras.push_back(new Triangulo(mouseX,mouseY,tamanho,0,0,0,true));
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,3,0));
                     proximaFigura = NULL;
                     break;
                 case 'q':
-                    figuras.push_back(new Quadrado(mouseX,mouseY,tamanho,0,0,0,true));
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,4,pi/4));
+                    proximaFigura = NULL;
+                    break;
+                case 'p':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,5,0));
+                    proximaFigura = NULL;
+                    break;
+                case 'h':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,7,0));
+                    proximaFigura = NULL;
+                    break;
+                case 'o':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,8,0));
                     proximaFigura = NULL;
                     break;
             }
@@ -123,7 +196,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                 if((*i)->Colidiu(x,y))
                 {
                     (*i)->setTamanho((*i)->getTamanho()+5);
-                    tamanho+=5;
+                    tamanho=(*i)->getTamanho();
                 }
             }
             break;
@@ -135,7 +208,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                     if((*i)->getTamanho()>5)
                     {
                         (*i)->setTamanho((*i)->getTamanho()-5);
-                        tamanho-=5;
+                        tamanho=(*i)->getTamanho();
                     }
                 }
             }
@@ -143,7 +216,6 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
        }
     }
 }
-
 
 int main(void)
 {

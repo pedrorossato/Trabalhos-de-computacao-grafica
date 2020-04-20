@@ -135,13 +135,13 @@
 	"Figura.h"
 	<algorithm>
 
-1587263583 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.cpp
+1587346819 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.cpp
 	"main.h"
 
-1586798653 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\botao.h
+1587347558 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\botao.h
 	"gl_canvas2d.h"
 
-1587262066 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.h
+1587346296 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\main.h
 	<math.h>
 	<stdio.h>
 	<stdlib.h>
@@ -154,6 +154,7 @@
 	"Poligono.h"
 	"Figura.h"
 	"Botao.h"
+	"ColorPicker.h"
 
 1586268770 source:c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\circulo.cpp
 	"Circulo.h"
@@ -165,15 +166,18 @@
 	"Figura.h"
 	<math.h>
 
-1587258596 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\figura.h
+1587347478 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\figura.h
 	"gl_canvas2d.h"
 	<math.h>
 
-1587257426 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\poligono.h
+1587347077 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\poligono.h
 	"Figura.h"
 	<math.h>
 
 1587257025 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\pentagono.h
 	"Figura.h"
 	<math.h>
+
+1587347567 c:\users\pedro rossato\desktop\computacaografica\trab2\gl_1_canvasglut\src\colorpicker.h
+	"Botao.h"
 

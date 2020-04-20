@@ -19,12 +19,11 @@ void render()
    desenhaGUI(screenWidth,screenHeight);
    renderizaBotoes();
    renderizaLabels();
-   renderizaColorPicker();
+   picker->Render();
    for(list<Figura*>::iterator f = figuras.begin();f!=figuras.end();++f)
    {
        (*f)->render();
    }
-   printf("\nsize: %d\n",figuras.size());
 }
 
 //funcao para tratamento de mouse: cliques, movimentos e arrastos
@@ -37,11 +36,12 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
    if( button==0 && state == 0 ) //clicou com botao esquerdo
    {
+       arrasta = true;
        for(list<Botao>::iterator i = botoes.begin();i!=botoes.end();++i)
        {
            if(i->Colidiu(x,y))
            {
-               switch(i->getFigura())
+               switch(i->getFuncao())
                {
                    case 'a':
                         for(list<Figura*>::iterator i = figuras.begin();i!=figuras.end();++i)
@@ -50,7 +50,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                             carregado = false;
                         }
                         break;
-                   case 'f':
+                   case 'P':
                         switch(preenchidag)
                         {
                             case 0 :
@@ -64,23 +64,29 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                                     figuraSelecionada->setPreenchida(preenchidag);
                                 break;
                         }
-                   case 'q':
-                        proximaFigura = i->getFigura();
-                        break;
                    case 'c':
-                        proximaFigura = i->getFigura();
+                        proximaFigura = i->getFuncao();
                         break;
-                   case 't':
-                        proximaFigura = i->getFigura();
+                   case '3':
+                        proximaFigura = i->getFuncao();
                         break;
-                   case 'p':
-                        proximaFigura = i->getFigura();
+                   case '4':
+                        proximaFigura = i->getFuncao();
                         break;
-                   case 'h':
-                        proximaFigura = i->getFigura();
+                   case '5':
+                        proximaFigura = i->getFuncao();
                         break;
-                   case 'o':
-                        proximaFigura = i->getFigura();
+                   case '6':
+                        proximaFigura = i->getFuncao();
+                        break;
+                    case '7':
+                        proximaFigura = i->getFuncao();
+                        break;
+                   case '8':
+                        proximaFigura = i->getFuncao();
+                        break;
+                    case 'd':
+                        proximaFigura = i->getFuncao();
                         break;
                    case '+':
                         if(figuraSelecionada != nullptr)
@@ -100,18 +106,28 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                         if(tamanho>5 && figuraSelecionada == nullptr)
                             tamanho-=5;
                         break;
-                    case 'm':
+                    case 'F':
                         if(figuraSelecionada != nullptr)
                         {
-                            figuras.push_back(new Poligono(figuraSelecionada->getX(),figuraSelecionada->getY(),figuraSelecionada->getTamanho(),
-                                                           figuraSelecionada->getR(),figuraSelecionada->getG(),figuraSelecionada->getB(),
-                                                           figuraSelecionada->getPreenchida(),figuraSelecionada->getLados(),figuraSelecionada->getAngulo()));
+                            for(auto i = figuras.begin();i != figuras.end();++i)
+                            {
+                                if(*i == figuraSelecionada)
+                                    figuras.erase(i);
+                            }
+                            figuras.push_back(figuraSelecionada);
+
+                        }
+                        break;
+                    case 'A':
+                        if(figuraSelecionada != nullptr)
+                        {
                             for(auto i = figuras.begin();i != figuras.end();++i)
                             {
                                 if(*i == figuraSelecionada)
                                     figuras.erase(i);
                             }
 
+                            figuras.push_front(figuraSelecionada);
                         }
                         break;
                     case '>':
@@ -135,8 +151,6 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                }
            }
        }
-
-
        if(mouseX<880)
        {
             figuraSelecionada = nullptr;
@@ -150,31 +164,43 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             switch(proximaFigura)
             {
                 case 'c':
-                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,360,0));
-                    proximaFigura = NULL;
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,picker->getR(),picker->getG(),picker->getB(),preenchidag,360,0));
+                    proximaFigura = (char)NULL;
                     break;
-                case 't':
-                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,3,0));
-                    proximaFigura = NULL;
+                case '3':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,picker->getR(),picker->getG(),picker->getB(),preenchidag,3,0));
+                    proximaFigura = (char)NULL;
                     break;
-                case 'q':
-                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,4,pi/4));
-                    proximaFigura = NULL;
+                case '4':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,picker->getR(),picker->getG(),picker->getB(),preenchidag,4,pi/4));
+                    proximaFigura = (char)NULL;
                     break;
-                case 'p':
-                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,5,0));
-                    proximaFigura = NULL;
+                case '5':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,picker->getR(),picker->getG(),picker->getB(),preenchidag,5,0));
+                    proximaFigura = (char)NULL;
                     break;
-                case 'h':
-                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,7,0));
-                    proximaFigura = NULL;
+                case '6':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,picker->getR(),picker->getG(),picker->getB(),preenchidag,6,0));
+                    proximaFigura = (char)NULL;
                     break;
-                case 'o':
-                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,rg,gg,bg,preenchidag,8,0));
-                    proximaFigura = NULL;
+                case '7':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,picker->getR(),picker->getG(),picker->getB(),preenchidag,7,0));
+                    proximaFigura = (char)NULL;
+                    break;
+                case '8':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,picker->getR(),picker->getG(),picker->getB(),preenchidag,8,0));
+                    proximaFigura = (char)NULL;
+                    break;
+                case 'd':
+                    figuras.push_back(new Poligono(mouseX,mouseY,tamanho,picker->getR(),picker->getG(),picker->getB(),preenchidag,10,0));
+                    proximaFigura = (char)NULL;
                     break;
             }
         }
+    }
+    if( button==0 && state == 1 )//soltou o clique
+    {
+        arrasta = false;
     }
     else if(button==2 && state==0) //clicou com botao direito
     {
@@ -215,6 +241,35 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             break;
        }
     }
+    if(arrasta && figuraSelecionada!=nullptr && mouseX<880)
+    {
+        figuraSelecionada->setX(mouseX);
+        figuraSelecionada->setY(mouseY);
+    }
+   if(arrasta && picker->getBRed()->Colidiu(x,y))
+   {
+       picker->setXRed(x);
+       if(figuraSelecionada!=nullptr)
+       {
+           figuraSelecionada->setColor(picker->getR(),picker->getG(),picker->getB());
+       }
+   }
+   if(arrasta && picker->getBGreen()->Colidiu(x,y))
+   {
+       picker->setXGreen(x);
+       if(figuraSelecionada!=nullptr)
+       {
+           figuraSelecionada->setColor(picker->getR(),picker->getG(),picker->getB());
+       }
+   }
+   if(arrasta && picker->getBBlue()->Colidiu(x,y))
+   {
+       picker->setXBlue(x);
+       if(figuraSelecionada!=nullptr)
+       {
+           figuraSelecionada->setColor(picker->getR(),picker->getG(),picker->getB());
+       }
+   }
 }
 
 int main(void)
